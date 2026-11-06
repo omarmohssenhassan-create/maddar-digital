@@ -1,0 +1,115 @@
+import {chromium} from '../.tools/qa/node_modules/playwright/index.mjs';
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+const base='http://127.0.0.1:4173';
+const executablePath=process.env.CHROME_PATH||'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe';
+const browser=await chromium.launch({executablePath,headless:true,args:['--no-first-run','--no-default-browser-check']});
+await mkdir('.qa',{recursive:true});
+const errors=[],checks=[];
+try{
+  const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('console',msg=>{if(msg.type()==='error')errors.push(msg.text());});
+  page.setDefaultTimeout(10000); await page.goto(base);await page.evaluate(()=>document.fonts.ready);
+  await page.screenshot({path:'.qa/home-desktop.png',fullPage:true});
+  assert.equal(await page.locator('html').getAttribute('dir'),'rtl');
+  assert.equal(await page.locator('h1').textContent(),'من أول عملية بيعلحد إدارة فروعك');
+  assert.equal(await page.locator('.service-card').count(),4);
+  assert.equal(await page.locator('a[href*="wa.me"]').count(),0);
+  assert.equal(await page.locator('.client-link').count(),0);
+  for(const activity of ['restaurant','warehouse','company','shop']){
+    await page.locator('[data-activity="'+activity+'"]').click();
+    assert.equal(await page.locator('[data-activity="'+activity+'"]').getAttribute('aria-selected'),'true');
+    assert.ok(await page.locator('#activity-result a').count()>=2);
+  }
+  for(const service of ['pos','erp','web','marketing']){
+    await page.goto(base+'/#/services/'+service);
+    assert.ok(await page.locator('h1').textContent());
+    assert.ok(await page.locator('.features-list article').count()>=3);
+    await page.locator('.detail-hero a[href="#/contact?service='+service+'"]').click();
+    assert.equal(await page.locator('#service').inputValue(),service);
+  }
+  checks.push('home, activity recommendations, four service routes and service preselection');
+  await page.goto(base+'/#/demo');
+  assert.equal(await page.locator('.product-card').count(),6);
+  await page.locator('#product-search').fill('١٠٠٢');assert.equal(await page.locator('.product-card').count(),1);
+  assert.match(await page.locator('.product-card h3').textContent(),/حليب/);
+  await page.locator('#product-search').fill('ارز');assert.match(await page.locator('.product-card h3').textContent(),/أرز/);
+  await page.locator('#product-search').fill('غير موجود');assert.equal(await page.locator('.no-products').count(),1);
+  await page.locator('#clear-search').click();assert.equal(await page.locator('.product-card').count(),6);
+  await page.locator('[data-category="أغذية"]').click();assert.equal(await page.locator('.product-card').count(),3);
+  await page.locator('[data-category="الكل"]').click();
+  await page.locator('[data-add="coffee"]').click();
+  await page.locator('[data-quantity="coffee"]').fill('13');await page.locator('[data-quantity="coffee"]').press('Tab');
+  assert.equal(await page.locator('[data-quantity="coffee"]').inputValue(),'1');
+  assert.match(await page.locator('#toast').textContent(),/أكبر من المتاح/);
+  await page.locator('[data-quantity="coffee"]').fill('2');await page.locator('[data-quantity="coffee"]').press('Tab');
+  await page.locator('[data-add="milk"]').click();await page.locator('[data-remove="milk"]').click();
+  await page.locator('[data-add="tea"]').click();await page.locator('[data-quantity="tea"]').fill('3');await page.locator('[data-quantity="tea"]').press('Tab');
+  assert.match(await page.locator('#cart-total').textContent(),/٣٣٥/);
+  await page.locator('#checkout').click();await page.locator('#receipt-dialog').waitFor({state:'visible'});
+  assert.match(await page.locator('#receipt-title').textContent(),/تحديث المخزون/);
+  assert.equal(await page.locator('.receipt-lines>div').count(),2);
+  await page.screenshot({path:'.qa/receipt-desktop.png'});
+  await page.locator('.continue-sale').click();
+  assert.equal(await page.locator('#checkout').isDisabled(),true);
+  const coffee=page.locator('.product-card').filter({has:page.locator('h3',{hasText:'قهوة مطحونة'})});
+  const tea=page.locator('.product-card').filter({has:page.locator('h3',{hasText:'شاي أسود'})});
+  assert.match(await coffee.locator('.stock-pill').textContent(),/١٠/);
+  assert.match(await tea.locator('.stock-pill').textContent(),/نفد/);assert.equal(await tea.locator('button').isDisabled(),true);
+  await page.locator('[data-add="water"]').click();await page.goto(base+'/#/');await page.goto(base+'/#/demo');
+  assert.equal(await page.locator('[data-quantity="water"]').inputValue(),'1');
+  await page.locator('.reset-demo').click();
+  assert.match(await coffee.locator('.stock-pill').textContent(),/١٢/);assert.match(await tea.locator('.stock-pill').textContent(),/٣/);
+  assert.equal(await page.locator('#last-receipt').isVisible(),false);
+  assert.equal(await page.locator('.empty-cart').count(),1);
+  await page.screenshot({path:'.qa/demo-desktop.png',fullPage:true});
+  checks.push('name/code search, filters, add/remove, quantity edits, oversell protection, receipt, stock deduction, navigation state and reset');
+  await page.goto(base+'/#/contact?service=erp');await page.locator('.form-submit').click();
+  for(const field of ['name','phone','activity'])assert.equal(await page.locator('#'+field).getAttribute('aria-invalid'),'true');
+  await page.locator('#name').fill('عميل تجريبي');await page.locator('#phone').fill('01412345678');await page.locator('#activity').selectOption('company');
+  await page.locator('.form-submit').click();assert.equal(await page.locator('#request-result').isVisible(),false);
+  await page.locator('#phone').fill('٠١٠١٢٣٤٥٦٧٨');await page.locator('#message').fill('<b>طلب تجربة & استفسار</b>');
+  await page.locator('.form-submit').click();
+  assert.equal(await page.locator('#request-result').isVisible(),true);
+  assert.match(await page.locator('#request-result').textContent(),/لم يُرسل/);
+  assert.match(await page.locator('#request-text').textContent(),/أنظمة إدارة الشركات/);
+  assert.equal(await page.locator('#request-text b').count(),0);
+  await page.screenshot({path:'.qa/contact-desktop.png',fullPage:true});
+  checks.push('required fields, invalid mobile rejection, Arabic mobile digits, draft summary, selected service, HTML escaping and no false send confirmation');
+  await page.evaluate(()=>{window.SITE_CONFIG.company.whatsapp='201012345678';window.SITE_CONFIG.company.clientLoginUrl='https://example.com/login';window.open=(url)=>{window.testOpenedUrl=url;return null;};});
+  await page.goto(base+'/#/contact?service=pos');
+  assert.ok(await page.locator('a[href*="wa.me"]').count()>0);assert.equal(await page.locator('.client-link').count(),1);
+  await page.locator('#name').fill('اختبار الربط');await page.locator('#phone').fill('01012345678');await page.locator('#activity').selectOption('shop');
+  await page.locator('.form-submit').click();
+  const opened=await page.evaluate(()=>window.testOpenedUrl);assert.ok(opened.startsWith('https://wa.me/201012345678?text='));
+  assert.match(decodeURIComponent(opened),/الكاشير والمخزون/);
+  checks.push('configured WhatsApp URL uses encoded form data and customer login appears; WhatsApp opening intercepted, no message sent');
+  await page.reload(); // clears test-only config; real source remains empty
+  for(const width of [390,320,768,1440]){
+    await page.setViewportSize({width,height:900});
+    for(const route of ['/','/demo','/contact','/services/pos']){
+      await page.goto(base+'/#'+route);await page.evaluate(()=>document.fonts.ready);
+      const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
+      assert.equal(overflow,false,'horizontal overflow '+width+' '+route);
+      if(width===390)await page.screenshot({path:'.qa/'+(route==='/'?'home':route.split('/').pop())+'-mobile.png',fullPage:true});
+    }
+  }
+  await page.setViewportSize({width:390,height:844});await page.goto(base);
+  await page.locator('.menu-toggle').click();assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'),'true');
+  await page.locator('#main-nav a[href="#/?section=services"]').click();
+  assert.equal(await page.locator('#services').isVisible(),true);
+  await page.goto(base+'/#/demo');
+  await page.locator('[data-add="coffee"]').click();await page.locator('#checkout').click();
+  assert.equal(await page.locator('#receipt-dialog').isVisible(),true);await page.locator('.dialog-close').click();
+  await page.locator('.reset-demo').click();assert.equal(await page.locator('.empty-cart').count(),1);
+  checks.push('390/320/768/1440px overflow checks on home, demo, contact and service pages; mobile menu and complete mobile sale/reset');
+  const bad=await fetch(base+'/missing-file.js');assert.equal(bad.status,404);
+  await page.goto(base+'/#/missing');assert.match(await page.locator('h1').textContent(),/مش موجودة/);
+  const filePage=await browser.newPage();await filePage.goto(new URL('../dist/index.html',import.meta.url).href+'#/demo');
+  assert.equal(await filePage.locator('.product-card').count(),6);await filePage.close();
+  checks.push('HTTP missing file response, route fallback and direct file opening');
+  assert.deepEqual(errors,[],'Browser console errors');
+  await writeFile('.qa/browser-report.json',JSON.stringify({status:'passed',checks,consoleErrors:errors},null,2));
+  console.log(JSON.stringify({status:'passed',checks,consoleErrors:errors},null,2));
+}finally{await browser.close();}
