@@ -1,0 +1,12 @@
+MADDAR DIGITAL — APPROVED BRAND ASSETS
+
+maddar-logo-original.jpeg: company logo supplied by the owner.
+maddar-brand-banner.jpeg: company background/banner supplied by the owner.
+
+Both files are unchanged copies of the supplied originals. Website framing uses CSS in identity.css.
+Company settings: dist/config.js.
+Contact email: info@MaddarDigital.com
+Facebook: https://www.facebook.com/MaddarDigital
+WhatsApp links and QR use company.whatsapp; the number is not shown in the website UI.
+
+The earlier generated logo is superseded by these supplied images.

@@ -1,4 +1,4 @@
-import {chromium} from '../.tools/qa/node_modules/playwright/index.mjs';
+﻿import {chromium} from '../.tools/qa/node_modules/playwright/index.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 const base='http://127.0.0.1:4173';
@@ -10,26 +10,31 @@ try{
   const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
   page.on('pageerror',error=>errors.push(error.message));
   page.on('console',msg=>{if(msg.type()==='error')errors.push(msg.text());});
+  await page.addInitScript(()=>{window.open=url=>{window.testOpenedUrl=url;return null;};});
   page.setDefaultTimeout(10000); await page.goto(base);await page.evaluate(()=>document.fonts.ready);
   await page.screenshot({path:'.qa/home-desktop.png',fullPage:true});
   assert.equal(await page.locator('html').getAttribute('dir'),'rtl');
-  assert.equal(await page.locator('h1').textContent(),'من أول عملية بيعلحد إدارة فروعك');
-  assert.equal(await page.locator('.service-card').count(),4);
-  assert.equal(await page.locator('a[href*="wa.me"]').count(),0);
+  assert.ok((await page.locator('h1').textContent()).length>10);
+  assert.equal(await page.locator('.service-card').count(),6);
+  assert.equal(await page.locator('.hero').count(),1);
+  assert.equal(await page.locator('.hero a[href="#/demo"]').count(),0);
+  assert.equal(await page.locator('.hero .dashboard-window,.demo-promo').count(),0);
+  assert.deepEqual(await page.locator('.experience-cards > a').evaluateAll(links=>links.map(a=>a.getAttribute('href'))),['#/demo','#/demos/menu','#/demos/inventory']);
+  assert.ok(await page.locator('a[href="https://wa.me/201212213033"]').count()>0);
   assert.equal(await page.locator('.client-link').count(),0);
   for(const activity of ['restaurant','warehouse','company','shop']){
     await page.locator('[data-activity="'+activity+'"]').click();
     assert.equal(await page.locator('[data-activity="'+activity+'"]').getAttribute('aria-selected'),'true');
     assert.ok(await page.locator('#activity-result a').count()>=2);
   }
-  for(const service of ['pos','erp','web','marketing']){
+  for(const service of ['web','apps','erp','pos','menu','marketing']){
     await page.goto(base+'/#/services/'+service);
     assert.ok(await page.locator('h1').textContent());
     assert.ok(await page.locator('.features-list article').count()>=3);
     await page.locator('.detail-hero a[href="#/contact?service='+service+'"]').click();
     assert.equal(await page.locator('#service').inputValue(),service);
   }
-  checks.push('home, activity recommendations, four service routes and service preselection');
+  checks.push('home, activity recommendations, six service routes and service preselection');
   await page.goto(base+'/#/demo');
   assert.equal(await page.locator('.product-card').count(),6);
   await page.locator('#product-search').fill('١٠٠٢');assert.equal(await page.locator('.product-card').count(),1);
@@ -72,7 +77,7 @@ try{
   await page.locator('#phone').fill('٠١٠١٢٣٤٥٦٧٨');await page.locator('#message').fill('<b>طلب تجربة & استفسار</b>');
   await page.locator('.form-submit').click();
   assert.equal(await page.locator('#request-result').isVisible(),true);
-  assert.match(await page.locator('#request-result').textContent(),/لم يُرسل/);
+  assert.match(await page.locator('#request-result').textContent(),/اضغط إرسال بنفسك/);
   assert.match(await page.locator('#request-text').textContent(),/أنظمة إدارة الشركات/);
   assert.equal(await page.locator('#request-text b').count(),0);
   await page.screenshot({path:'.qa/contact-desktop.png',fullPage:true});
@@ -83,9 +88,9 @@ try{
   await page.locator('#name').fill('اختبار الربط');await page.locator('#phone').fill('01012345678');await page.locator('#activity').selectOption('shop');
   await page.locator('.form-submit').click();
   const opened=await page.evaluate(()=>window.testOpenedUrl);assert.ok(opened.startsWith('https://wa.me/201012345678?text='));
-  assert.match(decodeURIComponent(opened),/الكاشير والمخزون/);
+  assert.match(decodeURIComponent(opened),/الكاشير والمخازن/);
   checks.push('configured WhatsApp URL uses encoded form data and customer login appears; WhatsApp opening intercepted, no message sent');
-  await page.reload(); // clears test-only config; real source remains empty
+  await page.reload(); // clears test-only config; restores the configured company number
   for(const width of [390,320,768,1440]){
     await page.setViewportSize({width,height:900});
     for(const route of ['/','/demo','/contact','/services/pos']){

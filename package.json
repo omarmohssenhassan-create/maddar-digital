@@ -1,7 +1,21 @@
 {
-  "name": "arabic-business-site",
-  "version": "1.0.0",
+  "name": "maddar-digital",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "node server.mjs", "start": "node server.mjs", "test": "node --test tests/engine.test.mjs", "test:browser": "node tests/browser.mjs" }
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node scripts/start-local.mjs",
+    "test": "node --test tests/engine.test.mjs tests/demo-engine.test.mjs tests/startup.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "test:i18n": "node tests/i18n.browser.mjs",
+    "test:whatsapp": "node tests/whatsapp.browser.mjs",
+    "test:experience": "node tests/experience.browser.mjs",
+    "package:site": "node scripts/package-website.mjs",
+    "test:studio": "node tests/studio.browser.mjs",
+    "media:film": "node scripts/generate-brand-film.mjs"
+  }
 }

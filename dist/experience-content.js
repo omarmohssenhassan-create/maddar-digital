@@ -1,0 +1,70 @@
+// Editable sample data and Arabic/English content for the interactive experiences.
+Object.assign(window.MADAR_MESSAGES, {
+  newHeroTitle:['من فكرة عندك،','Your next idea.'],newHeroAccent:['لحل يشتغل معاك.','Built for business.'],
+  heroVisualCaption:['حضور أقوى. وإدارة أبسط.','A stronger presence. Simpler operations.'],
+  briefSiteLabel:['موقع شركة','Company website'],briefStoreLabel:['متجر إلكتروني','Online store'],briefSystemLabel:['نظام أعمال','Business system'],briefMenuLabel:['منيو QR','QR menu'],
+  work:['جرّب حلولنا','Try our demos'], examples:['جرّب الفكرة بنفسك.','Get a feel for the solution.'],
+  discuss:['احكي لنا عن مشروعك','Tell us about your project'],
+  examplesIntro:['كاشير، منيو ومخزون. تجارب تفاعلية ببيانات تجريبية، من غير تسجيل أو دفع.','POS, digital menus and inventory. Interactive samples with no signup or payment.'],
+  demoHub:['التجارب التفاعلية','Interactive demos'],demoHubIntro:['شوف طريقة الاستخدام قبل ما نتكلم في تفاصيل مشروعك. كل تجربة مستقلة وبتشتغل في متصفحك.','Explore how it feels before discussing your project. Each sample runs independently in your browser.'],
+  sampleLabel:['نموذج تجريبي','Sample demo'],sampleOnly:['بيانات تجريبية فقط · لا تسجيل ولا دفع','Sample data only · No signup or payment'],
+  tryDemo:['افتح التجربة','Open demo'],allDemos:['كل التجارب','All demos'],
+  menuDemoTitle:['منيو إلكتروني','Digital menu'],menuDemoDesc:['تصفّح الأقسام، ابحث عن صنف وجهّز طلبًا تجريبيًا.','Explore categories, search dishes and build a sample order.'],
+  inventoryDemoTitle:['إدارة المخزون','Inventory management'],inventoryDemoDesc:['تابع الرصيد وسجّل الوارد والصادر وشوف التنبيهات تتحدث.','Track quantities, record stock movements and see alerts update.'],
+  posDemoTitle:['كاشير ومبيعات','POS & sales'],posDemoDesc:['كوّن فاتورة، عدّل الكميات وراقب المخزون بعد البيع التجريبي.','Build an invoice, adjust quantities and watch stock change after a sample sale.'],
+  menuPreview:['قهوة، أكلة حلوة ولحظة رايقة.','Good food. Great coffee.'],inventoryPreview:['كل صنف، حركته واضحة.','Every item. Every movement.'],
+  demoBrowserNote:['كل التغييرات داخل التجربة فقط، وتُمسح عند إعادة تحميل الصفحة. لا يتم إرسال طلبات أو تعديل مخزون حقيقي.','All changes stay in this demo and reset on page reload. No orders are sent and no real inventory is changed.'],
+  demoCustom:['عايز تجربة على مقاس نشاطك؟','Want a demo tailored to your business?'],demoCustomDesc:['احكي لنا بتدير شغلك إزاي، ونحدّد معاك التفاصيل.','Tell us about your workflow and we’ll define the details together.'],
+  requestActivity:['اطلب حلًا لنشاطك','Discuss a solution for your business'],
+  faqKicker:['قبل ما نبدأ','Before we start'],faqTitle:['أسئلة في بالك؟','A few things you might be wondering.'],faqIntro:['إجابات واضحة تساعدك تاخد الخطوة الجاية.','Clear answers to help you take the next step.'],
+  deliveryTitle:['هنحدد معاك','We’ll agree on'],deliveryItems:['الوظائف المطلوبة، مراحل التنفيذ وطريقة التسليم.','Required features, delivery stages and handover.'],
+  serviceHint:['الخدمة المختارة','Selected service'],quickBrief:['وصف سريع للمشروع','A quick project brief'],
+  briefWebsite:['محتاج موقع يعرّف بنشاطي ويخلّي التواصل أسهل.','I need a website that introduces my business and makes enquiries easier.'],
+  briefStore:['محتاج أعرض منتجاتي وأبيع أونلاين.','I’d like to showcase my products and sell online.'],
+  briefSystem:['محتاج أنظّم العمليات والمتابعة في نشاطي.','I need to organise operations and reporting for my business.'],
+  briefMenu:['محتاج منيو يتفتح بسهولة من الموبايل وQR.','I need a mobile-friendly menu that opens from a QR code.'],
+  briefLabel:['ابدأ بوصف جاهز وعدّله براحتك','Start with a prompt and make it your own'],
+  menuVenue:['كافيه الحكاية','Hekaya Café'],menuVenueSub:['منيو تجريبي من Maddar Digital','A sample menu by Maddar Digital'],
+  menuAll:['كل المنيو','Full menu'],menuMain:['أطباق','Dishes'],menuDrinks:['مشروبات','Drinks'],menuDesserts:['حلويات','Desserts'],
+  menuSearch:['ابحث في المنيو','Search the menu'],menuAdd:['أضف {name} للطلب','Add {name} to order'],menuUnavailable:['غير متاح في التجربة','Unavailable in this demo'],
+  menuOrder:['طلبك التجريبي','Your sample order'],menuEmpty:['ابدأ بصنف يعجبك.','Start with something you like.'],menuSummary:['اعرض ملخص الطلب التجريبي','View sample order summary'],
+  menuSummaryTitle:['ملخص طلب تجريبي','Sample order summary'],menuSummaryNote:['ده ملخص للتجربة فقط. لم يتم إرسال طلب للمطعم أو تنفيذ دفع.','This is a sample summary. No order was sent to a restaurant and no payment was made.'],
+  menuLimit:['الحد الأقصى في التجربة ٢٠ من كل صنف.','The sample limit is 20 of each item.'],
+  sampleQuantity:['اكتب كمية صحيحة بين ١ و٩٩٩٩.','Enter a whole quantity between 1 and 9999.'],
+  inventoryHeading:['المخزون تحت عينك.','A clear view of your stock.'],inventorySub:['جرّب توريد أو صرف بضاعة، وشوف الرصيد والتنبيهات وسجل الحركة يتغيّروا.','Try receiving or issuing stock, then see balances, alerts and movement history update.'],
+  inventorySearch:['ابحث باسم الصنف أو الكود','Search by product name or code'],inventoryAll:['كل الأصناف','All items'],inventoryLow:['الناقص فقط','Low stock only'],
+  inventoryKinds:['أصناف تجريبية','Sample items'],inventoryUnits:['إجمالي الوحدات','Total units'],inventoryAlerts:['تنبيهات نقص','Low-stock alerts'],
+  stockProduct:['الصنف','Item'],stockBalance:['الرصيد','Balance'],stockMinimum:['حد التنبيه','Alert threshold'],stockStatus:['الحالة','Status'],stockOkay:['متوفر','In stock'],stockLow:['قارب على النفاد','Running low'],stockOut:['نفد المخزون','Out of stock'],
+  stockMove:['سجّل حركة','Record movement'],stockMovement:['حركة مخزون تجريبية','Sample stock movement'],stockDirection:['نوع الحركة','Movement type'],stockIn:['وارد','Stock in'],stockOutAction:['صادر','Stock out'],stockAmount:['الكمية','Quantity'],stockNote:['ملاحظة اختيارية','Optional note'],stockSave:['حفظ الحركة التجريبية','Save sample movement'],
+  stockSaved:['اتسجلت الحركة واتحدّث الرصيد.','Movement saved and balance updated.'],stockInsufficient:['الكمية المطلوبة أكبر من المتاح: {count}.','The requested amount exceeds available stock: {count}.'],stockHistory:['آخر الحركات','Recent movements'],stockHistoryEmpty:['لسه مفيش حركات. جرّب إضافة أو صرف كمية.','No movements yet. Try receiving or issuing stock.'],stockExport:['تصدير بيانات التجربة','Export sample data'],stockCsv:['الكود,الصنف,الرصيد,حد التنبيه','Code,Item,Balance,Alert threshold'],
+  stockScrollHint:['اسحب الجدول أفقيًا لعرض باقي البيانات والحركات.','Swipe the table sideways to see more details and actions.'],
+  demoNoResults:['مفيش نتائج. جرّب اسم أو كود تاني.','No matches. Try another name or code.'],backDemos:['ارجع للتجارب','Back to demos'],closeSample:['إغلاق الملخص','Close summary'],
+  privacyTitle:['بياناتك وطلبك','Your details and enquiry'],privacyIntro:['نستخدم التفاصيل اللي تختار تبعتها عشان نفهم مشروعك ونتواصل معاك بخصوصه.','The details you choose to send help us understand and respond to your project enquiry.'],
+  privacyBody:['النموذج بيجهّز رسالة واتساب؛ أنت اللي بتراجعها وبتضغط إرسال داخل واتساب. الموقع لا يحفظ بيانات النموذج في قاعدة بيانات، ولا ينفّذ دفعًا. بنحفظ اختيار اللغة فقط على جهازك، وتجارب المنيو والمخزون والكاشير مؤقتة داخل المتصفح. عند استخدام واتساب أو فيسبوك تطبّق سياسات المنصة التي تفتحها.','The form prepares a WhatsApp message for you to review and send yourself. This site does not store form details in a database or process payments. Only your language preference is stored on your device; the menu, inventory and POS samples are temporary browser experiences. When you open WhatsApp or Facebook, that platform’s policies apply.'],
+  privacyLink:['الخصوصية','Privacy'],
+});
+window.MADDAR_FAQ=[
+  {q:['مش متأكد محتاج أنهي خدمة؟','Not sure which service you need?'],a:['اختار نوع نشاطك وشوف الحلول المقترحة، أو احكي لنا عن المشكلة اللي عايز تحلّها. نحدّد معاك الخدمة المناسبة قبل التنفيذ.','Choose your business type to see relevant services, or tell us what you want to improve. We’ll define a suitable solution before implementation.']},
+  {q:['هل الديموهات دي أنظمة العملاء النهائية؟','Are these demos the finished client systems?'],a:['دي نماذج توضيحية ببيانات تجريبية. نظامك النهائي ووظائفه وتصميمه بنحددهم حسب احتياجات نشاطك والاتفاق على نطاق المشروع.','These are illustrative experiences with sample data. The final system, design and features depend on your business needs and the agreed project scope.']},
+  {q:['إزاي بتتحدد التكلفة والمدة؟','How are price and delivery time decided?'],a:['بعد ما نعرف الصفحات والوظائف والربط المطلوب، نجهّز عرضًا يوضح نطاق التنفيذ والتكلفة والمراحل. مفيش سعر أو مدة ثابتة لكل المشاريع.','Once we understand the pages, features and integrations, we prepare a proposal with scope, cost and milestones. There isn’t one fixed price or timeline for every project.']},
+  {q:['ينفع أبدأ بحاجة بسيطة وأطوّر بعدين؟','Can I start small and expand later?'],a:['نقدر نناقش نسخة أولى بالوظائف الأساسية، ونخطّط للتطوير اللاحق حسب الأولوية. الإضافات وطريقة الربط بنحددها معاك قبل التنفيذ.','We can discuss a first version with essential features and plan later work by priority. Additions and integrations are agreed before implementation.']},
+  {q:['هل ممكن أطلب موقع ونظام ومنيو مع بعض؟','Can I request a website, system and menu together?'],a:['أيوه، نقدر نناقش احتياجاتك كمنظومة واحدة. أي ربط بين الخدمات وتفاصيله بيتحدد صراحة في عرض المشروع.','Yes, we can discuss your needs together. Connections between services and their requirements are explicitly defined in the proposal.']},
+  {q:['إيه اللي بيحصل لما أبعت الطلب؟','What happens when I submit an enquiry?'],a:['الموقع بيجهّز رسالة من بياناتك ويفتح واتساب. تراجع الرسالة وتضغط إرسال بنفسك، وبعدها نتواصل لفهم المشروع وتحديد الخطوة المناسبة.','The site prepares a message from your details and opens WhatsApp. You review and send it yourself, then we discuss the project and the next step.']}
+];
+window.MADDAR_DEMOS={
+  menu:[
+    {id:'m1',name:['برجر كلاسيك','Classic burger'],description:['لحم مشوي، جبنة وصوص البيت.','Grilled beef, cheese and house sauce.'],category:'main',price:14500,available:true,art:'burger'},
+    {id:'m2',name:['باستا ألفريدو','Alfredo pasta'],description:['صوص كريمي، دجاج وبارميزان.','Creamy sauce, chicken and parmesan.'],category:'main',price:16000,available:true,art:'pasta'},
+    {id:'m3',name:['لاتيه','Latte'],description:['إسبريسو وحليب، سخن أو مثلّج.','Espresso and milk, hot or iced.'],category:'drinks',price:7500,available:true,art:'coffee'},
+    {id:'m4',name:['ليمون بالنعناع','Mint lemonade'],description:['ليمون طازة، نعناع وتلج.','Fresh lemon, mint and ice.'],category:'drinks',price:6500,available:true,art:'drink'},
+    {id:'m5',name:['تشيز كيك','Cheesecake'],description:['طبقة كريمية وصوص فراولة.','Creamy cheesecake with strawberry sauce.'],category:'desserts',price:9500,available:true,art:'cake'},
+    {id:'m6',name:['براونيز شوكولاتة','Chocolate brownie'],description:['شوكولاتة غنية وقلب طري.','Rich chocolate with a soft centre.'],category:'desserts',price:8500,available:false,art:'brownie'}
+  ],
+  inventory:[
+    {id:'SKU-101',name:['دفتر ملاحظات','Notebook'],stock:24,minimum:5,cost:4500},
+    {id:'SKU-102',name:['طقم أقلام','Pen set'],stock:3,minimum:5,cost:3000},
+    {id:'SKU-103',name:['مج حراري','Travel mug'],stock:12,minimum:4,cost:18500},
+    {id:'SKU-104',name:['حامل موبايل','Phone stand'],stock:0,minimum:3,cost:9500},
+    {id:'SKU-105',name:['شنطة قماش','Canvas bag'],stock:18,minimum:5,cost:12000}
+  ]
+};

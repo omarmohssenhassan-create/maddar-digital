@@ -1,6 +1,7 @@
 (() => {
   const e=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const paths={
+    qr:'<path d="M3 3h6v6H3Zm12 0h6v6h-6ZM3 15h6v6H3Zm12 0h2v2h-2Zm4 4h2v2h-2Zm-4 0h2v2h-2ZM11 3h1v4m0 4h4m-4 4v6m7-10h2v4M3 12h4m10 0v1"/>',
     arrow:'<path d="M19 12H5m6-6-6 6 6 6"/>',
     chevron:'<path d="m14 6-6 6 6 6"/>',
     check:'<path d="m5 12 4 4L19 6"/>',
@@ -30,9 +31,11 @@
     star:'<path d="m12 2 2.6 6.6L22 9l-5.7 4.8L18 21l-6-4-6 4 1.7-7.2L2 9l7.4-.4L12 2Z"/>',
     grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
     chart:'<path d="M3 3v18h18M7 16v-4m5 4V7m5 9v-6"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    facebook:'<path d="M14 21v-8h3l.5-4H14V7c0-1 .4-2 2-2h2V1.5A24 24 0 0 0 15 1c-3 0-5 2-5 5v3H7v4h3v8"/>',
     arrowup:'<path d="m6 16 12-8M9 8h9v9"/>'
   };
-  const icon=(name,cls="")=>'<svg class="icon '+cls+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.box)+'</svg>';
+  const icon=(name,cls="")=>'<svg class="icon '+cls+'" data-icon="'+name+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.box)+'</svg>';
   function art(kind,color="#98b2a2"){
     let shape="";
     if(kind==="milk")shape='<path d="m35 20 12-11h28l11 11v80H35Z" fill="#f9fbfc"/><path d="M35 32h51v52H35Z" fill="'+color+'"/><path d="m47 9 9 12h30M56 21v11" fill="none" stroke="#ced9e4" stroke-width="2"/><ellipse cx="61" cy="55" rx="13" ry="16" fill="#fff" opacity=".8"/><path d="M61 42c-10 12-11 19 0 22 11-3 10-10 0-22" fill="#fff"/><path d="M40 91h16m10 0h15" stroke="#dce2e8" stroke-width="3"/>';
@@ -46,13 +49,13 @@
     }
     return '<svg class="product-art" viewBox="0 0 120 115" aria-hidden="true"><ellipse cx="60" cy="104" rx="34" ry="5" fill="#172944" opacity=".08"/>'+shape+'</svg>';
   }
-  const money=cents=>(cents/100).toLocaleString("ar-EG",{maximumFractionDigits:2})+' <span class="currency">ج.م</span>';
+  const money=cents=>'<bdi>'+(cents/100).toLocaleString(window.I18N.locale,{maximumFractionDigits:2})+'</bdi> <span class="currency">'+(window.I18N.language==="ar"?"ج.م":"EGP")+'</span>';
   function dashboard(){
     const p=window.SITE_CONFIG.demoProducts;
     return '<div class="hero-visual"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="visual-dot"></div><div class="dashboard-window" aria-hidden="true"><div class="window-bar"><div class="window-brand"><span class="tiny-logo"></span> كاشيرك</div><span class="demo-chip">بيانات تجريبية</span><div class="window-dots"><i></i><i></i><i></i></div></div><div class="dashboard-body"><div class="mock-sidebar">'+icon("grid")+icon("cart","current")+icon("box")+icon("chart")+'<span class="sidebar-bottom"></span></div><div class="mock-main"><div class="mock-heading"><div><small>كل حاجة تحت السيطرة</small><h3>نقطة البيع</h3></div><span class="mock-day">بيع جديد '+icon("plus")+'</span></div><div class="mock-search">'+icon("search")+' ابحث عن صنف أو باركود<span>⌘ K</span></div><div class="mock-products">'+p.slice(0,3).map(item=>'<div class="mock-product"><div class="mock-product-art" style="--art-color:'+item.color+'">'+art(item.art,item.color)+'</div><b>'+e(item.name)+'</b><div>'+money(item.price)+'<span class="mini-plus">+</span></div></div>').join("")+'</div><div class="mock-bottom"><div class="mini-chart"><div><b>حركة المبيعات</b><span>توضيحي</span></div><div class="bars">'+[35,53,45,72,60,87,74,96,80].map((h,i)=>'<i style="height:'+h+'%;--n:'+i+'"></i>').join("")+'</div><div class="chart-labels"><span>السبت</span><span>الأحد</span><span>الاثنين</span><span>الثلاثاء</span></div></div><div class="mini-inventory">'+icon("box")+'<b>مخزونك قدامك</b><small>تابع المتاح من كل صنف</small><div class="inventory-lines"><i></i><i></i><i></i></div></div></div></div></div></div><div class="floating-note">'+icon("check")+'<div><b>بيعك ومخزونك.. متصلين</b><small>خطوة واحدة، وصورة أوضح</small></div></div><div class="visual-caption"><span></span> جرّب بنفسك، من غير تسجيل</div></div>';
   }
   function serviceCard(s,index){
-    return '<a class="service-card service-'+s.id+'" href="#/services/'+s.id+'"><div class="service-card-top"><span class="service-icon">'+icon(s.icon)+'</span><span class="card-index">0'+(index+1)+'</span></div><h3>'+e(s.title)+'</h3><p>'+e(s.short)+'</p><span class="card-link">اكتشف الخدمة '+icon("arrow")+'</span></a>';
+    return '<a class="service-card service-'+s.id+'" href="#/services/'+s.id+'"><span class="service-icon">'+icon(s.icon)+'</span><h3>'+e(s.title)+'</h3><p>'+e(s.short)+'</p><span class="card-link">'+window.I18N.t("learnMore")+' '+icon("arrow")+'</span></a>';
   }
   window.UI={e,icon,art,money,dashboard,serviceCard};
 })();

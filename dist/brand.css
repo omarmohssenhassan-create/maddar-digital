@@ -1,0 +1,247 @@
+/* Maddar Digital brand and bilingual presentation */
+.brand .brand-mark { width: 46px; height: 46px; border-radius: 12px; }
+.brand b { font-size: 17px; letter-spacing: .15px; }
+.brand small { font-size: 9px; }
+.language-switch { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 41px; padding: 8px 11px; background: #22496070; border: 1px solid #52788e; border-radius: 8px; color: #c8e5ef; font-size: 11px; font-weight: 550; white-space: nowrap; }
+.language-switch:hover { background: #345e7580; border-color: #8ab8cb; }
+.language-switch .icon { width: 16px; height: 16px; }
+.language-switch span[lang="ar"] { font-family: Alexandria,Tahoma,sans-serif; }
+.site-header nav .mobile-nav-contact { display: none; }
+.header-actions { gap: 12px; }
+.about-section { --ink: #244759; --muted: #5e7a85; background: #dce7e5; color: var(--ink); padding-block: 73px; }
+.about-layout { display: grid; grid-template-columns: 1.3fr .8fr; align-items: center; gap: 75px; }
+.about-copy .eyebrow { color: #36778b; margin-bottom: 15px; }
+.about-copy h2, .about-copy h1 { font-size: 35px; line-height: 1.7; color: #244759; margin-bottom: 22px; }
+.about-copy h1 { font-size: 42px; }
+.about-copy .muted { color: #658590; }
+.about-copy > p { color: #526f7c; font-size: 13px; line-height: 2.25; max-width: 660px; }
+.about-copy > p + p { margin-top: 15px; }
+.about-copy .text-link { margin-top: 22px; color: #2e7088; font-size: 12px; }
+.about-brand-card { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 284px; padding: 32px; border: 1px solid #bacfce; border-radius: 19px; overflow: hidden; background: #d1e1df; }
+.about-brand-card img { max-width: 100%; width: 270px; height: auto; position: relative; z-index: 1; }
+.about-brand-card > p { font-size: 11px; color: #627e87; margin-top: 25px; text-align: center; position: relative; z-index: 1; }
+.about-orbit { position: absolute; width: 310px; height: 185px; border: 1px solid #b6cecf; border-radius: 50%; transform: rotate(-25deg); z-index: -1; }
+.about-orbit-two { width: 245px; height: 245px; transform: rotate(28deg); border-color: #bdd3d1; }
+.about-values { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px; margin-top: 44px; padding-top: 30px; border-top: 1px solid #b8cdce; }
+.about-values article { display: flex; align-items: flex-start; gap: 12px; }
+.about-values article > span { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; background: #c6dbd8; color: #527f85; border: 1px solid #afc9c8; border-radius: 9px; }
+.about-values .icon { width: 18px; height: 18px; }
+.about-values h3 { color: #305668; font-size: 14px; margin-bottom: 6px; }
+.about-values p { color: #65818b; font-size: 11px; line-height: 2; }
+.about-page { background: #dce7e5; }
+.about-page > .container > .breadcrumb { color: #5b7a8b; }
+.about-page .breadcrumb .icon { color: #7394a5; }
+.about-page .standalone-about { padding-top: 49px; min-height: 65vh; }
+html[lang="en"] body { font-family: "Segoe UI",Arial,sans-serif; font-size: 15px; line-height: 1.7; }
+html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3 { letter-spacing: -.6px; }
+html[lang="en"] .brand b { letter-spacing: .2px; }
+html[lang="en"] .hero h1 { font-size: 51px; line-height: 1.23; margin-bottom: 25px; letter-spacing: -1.7px; }
+html[lang="en"] .hero-copy > p { font-size: 15px; line-height: 1.9; }
+html[lang="en"] .hero-copy > .hero-footnote { font-size: 12px; }
+html[lang="en"] .site-header nav a { font-size: 13px; }
+html[lang="en"] .section-heading h2 { line-height: 1.35; }
+html[lang="en"] .section-heading > p { line-height: 1.8; font-size: 14px; }
+html[lang="en"] .service-card h3 { font-size: 21px; line-height: 1.4; }
+html[lang="en"] .service-card p { font-size: 14px; line-height: 1.8; }
+html[lang="en"] .card-link { font-size: 12px; }
+html[lang="en"] .eyebrow { font-size: 12px; letter-spacing: .1px; }
+html[lang="en"] .about-copy h1, html[lang="en"] .about-copy h2 { line-height: 1.35; letter-spacing: -.8px; }
+html[lang="en"] .about-copy > p { font-size: 15px; line-height: 1.9; }
+html[lang="en"] .about-values h3 { font-size: 16px; }
+html[lang="en"] .about-values p { font-size: 13px; line-height: 1.7; }
+html[lang="en"] .about-brand-card > p { font-size: 12px; }
+html[lang="en"] .activity-result h3 { font-size: 14px; line-height: 1.9; }
+html[lang="en"] .activity-service-links a { font-size: 12px; }
+html[lang="en"] .process-grid h3 { font-size: 18px; }
+html[lang="en"] .process-grid p { font-size: 14px; line-height: 1.9; }
+html[lang="en"] .contact-copy h2 { font-size: 35px; line-height: 1.45; }
+html[lang="en"] .contact-copy > p { font-size: 14px; line-height: 1.9; }
+html[lang="en"] .contact-points { font-size: 13px; }
+html[lang="en"] .field label, html[lang="en"] .field input, html[lang="en"] .field select, html[lang="en"] .field textarea { font-size: 13px; }
+html[lang="en"] .field-error { font-size: 11px; }
+html[lang="en"] .form-note { font-size: 11px; }
+html[lang="en"] .form-header p { font-size: 12px; }
+html[lang="en"] .request-result pre { font-family: "Segoe UI",Arial,sans-serif; font-size: 12px; line-height: 1.9; }
+html[lang="en"] .request-result > p { font-size: 12px; }
+html[lang="en"] .example-info h3 { font-size: 17px; }
+html[lang="en"] .example-info small { font-size: 11px; }
+html[lang="en"] .menu-example-caption b { font-size: 14px; }
+html[lang="en"] .site-sample-hero h3 { font-size: 22px; line-height: 1.45; }
+html[lang="en"] .demo-heading h1 { line-height: 1.35; }
+html[lang="en"] .demo-heading p, html[lang="en"] .demo-notice { font-size: 13px; }
+html[lang="en"] .product-details h3 { font-size: 14px; }
+html[lang="en"] .invoice-heading h2 { font-size: 17px; }
+html[lang="en"] .empty-cart p { font-size: 12px; }
+html[lang="en"] .features-list p, html[lang="en"] .audience-card p, html[lang="en"] .detail-hero-grid > div > p { font-size: 14px; line-height: 1.9; }
+html[lang="en"] .detail-hero h1 { line-height: 1.3; }
+[dir="ltr"] svg[data-icon="arrow"], [dir="ltr"] svg[data-icon="chevron"] { transform: scaleX(-1); }
+[dir="ltr"] .activity-tab { text-align: left; }
+[dir="ltr"] .tab-arrow, [dir="ltr"] .count-badge { margin-right: 0; margin-left: auto; }
+[dir="ltr"] .detail-chips .icon, [dir="ltr"] .contact-points .icon, [dir="ltr"] .hero-reassurance .icon { margin-left: 0; margin-right: 7px; }
+[dir="ltr"] .invoice-total > small { text-align: right; }
+[dir="ltr"] .features-list article > .icon, [dir="ltr"] .related-links a > .icon:last-child { margin-right: 0; margin-left: auto; }
+[dir="ltr"] .dialog-close { left: auto; right: 14px; }
+[dir="ltr"] .process-grid > div:not(:last-child):after { left: 59px; right: -45px; }
+[dir="ltr"] .receipt-lines small { margin-right: 0; margin-left: 5px; }
+[dir="ltr"] .mini-plus, [dir="ltr"] .site-sample-nav > div { direction: ltr; }
+@media (max-width:1100px) {
+  .site-header { height: 78px; }
+  .site-header nav { display: none; position: absolute; top: 77px; left: 0; right: 0; height: auto; background: #14364f; border-bottom: 1px solid #54788f; padding: 12px 27px; flex-direction: column; align-items: stretch; gap: 0; box-shadow: 0 20px 35px #00000035; }
+  .site-header nav.open { display: flex; }
+  .site-header nav a, html[lang="en"] .site-header nav a { height: auto; font-size: 13px; padding: 13px 8px; }
+  .site-header nav a.active:after { display: none; }
+  .site-header nav .mobile-nav-contact { display: flex; }
+  .menu-toggle { display: grid; place-items: center; }
+  .client-link { display: none; }
+  .about-layout { gap: 45px; grid-template-columns: 1.3fr .8fr; }
+  .about-brand-card { min-height: 260px; padding: 26px; }
+  .about-copy h2 { font-size: 32px; }
+  html[lang="en"] .hero h1 { font-size: 43px; }
+  html[lang="en"] .service-card h3 { font-size: 19px; }
+  html[lang="en"] .service-card p { font-size: 13px; }
+}
+@media (max-width:900px) {
+  .about-section { padding-block: 60px; }
+  .about-layout { gap: 32px; }
+  .about-copy h2 { font-size: 30px; }
+  .about-copy > p { font-size: 12px; }
+  .about-brand-card { min-height: 245px; padding: 23px; }
+  .about-values { gap: 22px; margin-top: 33px; padding-top: 26px; }
+  .about-values article { gap: 9px; }
+  .about-values h3 { font-size: 13px; }
+  .about-values p { font-size: 10px; }
+  html[lang="en"] .hero h1 { font-size: 47px; }
+  html[lang="en"] .about-copy > p { font-size: 14px; }
+  html[lang="en"] .contact-copy h2 { font-size: 29px; }
+  html[lang="en"] .example-info h3 { font-size: 14px; }
+  html[lang="en"] .example-info small { font-size: 10px; }
+  [dir="ltr"] .process-grid > div:not(:last-child):after { right: -27px; }
+}
+@media (max-width:650px) {
+  .site-header { height: 73px; }
+  .brand .brand-mark { width: 40px; height: 40px; border-radius: 10px; }
+  .brand b { font-size: 14px; }
+  .brand small { font-size: 7px; }
+  .site-header nav { top: 72px; padding-inline: 18px; }
+  .header-actions { gap: 8px; }
+  .header-actions > .button-navy { display: none; }
+  .language-switch { min-height: 38px; padding: 7px 9px; font-size: 10px; gap: 5px; }
+  .language-switch .icon { width: 15px; height: 15px; }
+  .header-inner { gap: 12px; }
+  .about-section { padding-block: 47px; }
+  .about-layout { grid-template-columns: 1fr; gap: 28px; }
+  .about-copy h2, .about-copy h1 { font-size: 29px; line-height: 1.7; margin-bottom: 19px; }
+  .about-copy > p { font-size: 12px; line-height: 2.2; }
+  .about-copy .text-link { font-size: 11px; margin-top: 20px; }
+  .about-brand-card { min-height: 225px; padding: 25px; border-radius: 13px; }
+  .about-brand-card img { width: 260px; }
+  .about-brand-card > p { font-size: 11px; margin-top: 19px; }
+  .about-values { grid-template-columns: 1fr; gap: 22px; margin-top: 30px; padding-top: 26px; }
+  .about-values article { gap: 13px; }
+  .about-values h3 { font-size: 15px; margin-bottom: 4px; }
+  .about-values p { font-size: 12px; }
+  .about-page .standalone-about { padding-top: 33px; }
+  html[lang="en"] .hero h1 { font-size: 36px; line-height: 1.27; letter-spacing: -1px; margin-bottom: 21px; }
+  html[lang="en"] .hero-copy > p { font-size: 14px; line-height: 1.85; }
+  html[lang="en"] .hero-copy > .hero-footnote { font-size: 10px; }
+  html[lang="en"] .eyebrow { font-size: 11px; }
+  html[lang="en"] .section-heading > p { font-size: 13px; line-height: 1.8; }
+  html[lang="en"] .services-section .section-heading h2 { font-size: 27px; line-height: 1.35; }
+  html[lang="en"] .service-card h3 { font-size: 17px; min-height: 48px; line-height: 1.4; }
+  html[lang="en"] .service-card p { font-size: 12px; line-height: 1.8; }
+  html[lang="en"] .about-copy h1, html[lang="en"] .about-copy h2 { font-size: 31px; line-height: 1.35; }
+  html[lang="en"] .about-copy > p { font-size: 14px; line-height: 1.9; }
+  html[lang="en"] .about-values h3 { font-size: 17px; }
+  html[lang="en"] .about-values p { font-size: 13px; }
+  html[lang="en"] .about-brand-card > p { font-size: 12px; }
+  html[lang="en"] .activity-result h3 { font-size: 13px; }
+  html[lang="en"] .activity-service-links a { font-size: 11px; }
+  html[lang="en"] .activity-tab { font-size: 10px; }
+  html[lang="en"] .process-grid h3 { font-size: 18px; }
+  html[lang="en"] .process-grid p { font-size: 14px; }
+  html[lang="en"] .contact-copy h2 { font-size: 30px; }
+  html[lang="en"] .contact-copy > p { font-size: 14px; }
+  html[lang="en"] .contact-points { font-size: 12px; }
+  html[lang="en"] .example-info h3 { font-size: 17px; }
+  html[lang="en"] .example-info small { font-size: 11px; }
+  html[lang="en"] .menu-example-caption { font-size: 11px; }
+  html[lang="en"] .menu-example-caption b { font-size: 14px; }
+  html[lang="en"] .product-details h3 { font-size: 12px; }
+  [dir="ltr"] .process-grid > div { padding: 0 0 22px 53px; }
+  [dir="ltr"] .process-grid > div > span { right: auto; left: 0; }
+  [dir="ltr"] .process-grid > div:not(:last-child):after { right: auto; left: 17px; top: 41px; bottom: -10px; }
+  .footer-main > div { gap: 15px 22px; }
+}
+@media (max-width:360px) {
+  .brand b { font-size: 13px; }
+  .brand .brand-mark { width: 37px; height: 37px; }
+  .language-switch { padding-inline: 8px; }
+  html[lang="en"] .hero h1 { font-size: 32px; }
+  html[lang="en"] .service-card h3 { min-height: 0; font-size: 21px; }
+  html[lang="en"] .service-card p { font-size: 14px; }
+  html[lang="en"] .activity-tab { font-size: 9px; }
+}
+
+/* The device composition follows the reading direction without covering its headline. */
+[dir="ltr"] .device-phone { left: auto; right: 3px; transform: rotate(-3deg); }
+[dir="ltr"] .system-note { left: -7px; right: auto; }
+[dir="ltr"] .device-label { left: 12px; right: auto; }
+
+/* WhatsApp: one configured number powers the links, form and scannable code. */
+.whatsapp-card { display: grid; grid-template-columns: minmax(0,1fr) 148px; align-items: center; gap: 18px; padding: 20px; margin-top: 30px; background: #173e50; border: 1px solid #437268; border-radius: 15px; max-width: 460px; }
+.whatsapp-card-main { min-width: 0; }
+.whatsapp-card-icon { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 10px; background: #24564f; color: #b4efd2; margin-bottom: 12px; }
+.whatsapp-card-icon .icon { width: 23px; height: 23px; }
+.whatsapp-card h3 { color: #e1f2ec; font-size: 12px; line-height: 1.9; margin: 0; }
+.whatsapp-number { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; color: #b7f5d8; }
+.whatsapp-number bdi { font-family: "Segoe UI",Arial,sans-serif; font-size: 21px; font-weight: 650; letter-spacing: .3px; white-space: nowrap; }
+.whatsapp-number .icon { width: 15px; height: 15px; flex-shrink: 0; }
+.whatsapp-card p { color: #b9d0d2; font-size: 10px; line-height: 2; margin: 1px 0 0; }
+.whatsapp-qr { display: block; width: 148px; height: 148px; background: #fff; border-radius: 10px; overflow: hidden; direction: ltr; }
+.whatsapp-qr svg { display: block; width: 100%; height: 100%; transform: none; }
+.whatsapp-link { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; color: #b7f5d8; }
+.hero-actions .whatsapp-link { flex-basis: 100%; justify-content: flex-start; }
+.whatsapp-link .icon { width: 19px; height: 19px; }
+.footer-main > div { flex-wrap: wrap; }
+.footer-whatsapp { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: #b7f5d8; white-space: nowrap; }
+.footer-whatsapp bdi { font-family: "Segoe UI",Arial,sans-serif; font-size: 13px; }
+.whatsapp-float { position: fixed; z-index: 40; inset-inline-end: 23px; bottom: max(23px,env(safe-area-inset-bottom)); display: inline-flex; align-items: center; gap: 11px; min-height: 58px; padding: 10px 17px; border: 1px solid #5fa88d; border-radius: 40px; background: #126647; color: #fff; box-shadow: 0 6px 24px #071c2540; }
+.whatsapp-float > .icon { width: 28px; height: 28px; }
+.whatsapp-float span { display: grid; line-height: 1.4; }
+.whatsapp-float small { font-family: "Segoe UI",Arial,sans-serif; font-size: 10px; color: #c7ead9; }
+.whatsapp-float bdi { font-family: "Segoe UI",Arial,sans-serif; font-size: 14px; font-weight: 600; }
+.whatsapp-float:hover { background: #0c563b; }
+.whatsapp-float[hidden] { display: none; }
+.whatsapp-number:hover, .whatsapp-link:hover { color: #fff; }
+.whatsapp-qr:focus-visible, .whatsapp-number:focus-visible, .whatsapp-float:focus-visible, .footer-whatsapp:focus-visible { outline: 3px solid #b7f5d8; outline-offset: 5px; }
+.site-footer { padding-bottom: 80px; }
+html[lang="en"] .whatsapp-card h3 { font-size: 15px; line-height: 1.5; }
+html[lang="en"] .whatsapp-card p { font-size: 12px; line-height: 1.7; }
+@media (min-width:651px) and (max-width:1100px) {
+  .whatsapp-card { grid-template-columns: 1fr; }
+}
+@media (max-width:900px) {
+  .hero-actions .whatsapp-link { justify-content: center; }
+}
+@media (max-width:650px) {
+  .whatsapp-card { padding: 17px; gap: 13px; max-width: 460px; }
+  .whatsapp-number { gap: 6px; }
+  .whatsapp-number bdi { font-size: 19px; }
+  .whatsapp-float { width: 54px; height: 54px; min-height: 54px; padding: 0; justify-content: center; inset-inline-end: 16px; bottom: max(16px,env(safe-area-inset-bottom)); }
+  .whatsapp-float span { display: none; }
+}
+@media (max-width:370px) {
+  .whatsapp-card { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .whatsapp-card-icon { margin-inline: auto; }
+}
+
+/* Outlined Madar lockup: a consistent wordmark at every size and in either language. */
+.brand .brand-logo { display: block; width: 184px; height: auto; max-width: 100%; border-radius: 0; }
+.about-brand-card img { width: 310px; }
+@media (max-width:650px) {
+  .brand .brand-logo { width: 164px; }
+  .about-brand-card img { width: 280px; }
+}
+@media (max-width:360px) {
+  .brand .brand-logo { width: 149px; }
+}
