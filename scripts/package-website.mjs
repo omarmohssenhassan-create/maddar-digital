@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(fileURLToPath(new URL('..',import.meta.url)));
 const dist=path.join(root,'dist'),output=path.join(root,'release','maddar-digital-upload');
 const files=(await readdir(dist,{withFileTypes:true})).filter(f=>f.isFile()&&(/\.(html|js|css|xml|txt)$/.test(f.name)||f.name==='_headers')).map(f=>f.name);
-files.push('assets/arabic.ttf','assets/FONT-LICENSE.txt','assets/maddar-logo-original.jpeg','assets/maddar-brand-banner.jpeg','vendor/qrcode.js','vendor/qrcode.LICENSE.txt');
+files.push('assets/arabic.ttf','assets/FONT-LICENSE.txt','assets/maddar-logo-original.jpeg','assets/maddar-brand-banner.jpeg');
 files.push('assets/maddar-film-ar.mp4','assets/maddar-film-en.mp4','assets/maddar-film-ar-poster.jpg','assets/maddar-film-en-poster.jpg');
 const crcTable=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=(n&1)?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
 const crc32=data=>{let crc=0xffffffff;for(const value of data)crc=crcTable[(crc^value)&255]^(crc>>>8);return (crc^0xffffffff)>>>0;};

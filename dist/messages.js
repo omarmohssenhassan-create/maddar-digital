@@ -77,8 +77,8 @@ window.MADAR_MESSAGES = {
   "facebookCompany": ["صفحة {company} على فيسبوك", "{company} on Facebook"],
   "brandArtworkLabel": ["حلول مدار ديجيتال للمواقع والتطبيقات والكاشير والمخزون والمنيو والتسويق", "Maddar Digital: websites, apps, POS, inventory, digital menus and marketing"],
   "whatsappDirect": ["نتكلم عن مشروعك؟", "Let’s talk about your project"],
-  "whatsappScan": ["امسح الكود بكاميرا موبايلك لفتح المحادثة، أو اضغط على زر واتساب.", "Scan with your phone camera to start a chat, or tap the WhatsApp button."],
-  "whatsappQrLabel": ["افتح محادثة واتساب مع {company}", "Open a WhatsApp chat with {company}"],
+  "whatsappHint": ["اضغط على زر واتساب لفتح المحادثة مباشرة.", "Tap the WhatsApp button to start a chat directly."],
+  "whatsappLabel": ["افتح محادثة واتساب مع {company}", "Open a WhatsApp chat with {company}"],
   "whatsapp": [
     "كلّمنا واتساب",
     "Chat on WhatsApp"

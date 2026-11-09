@@ -1,5 +1,4 @@
 ﻿import {chromium} from '../.tools/qa/node_modules/playwright/index.mjs';
-import jsQR from '../.tools/qa/node_modules/jsqr/dist/jsQR.js';
 import assert from 'node:assert/strict';
 import {writeFile} from 'node:fs/promises';
 const base='http://127.0.0.1:4173',target='https://wa.me/201212213033';
@@ -9,16 +8,6 @@ try {
  const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
  page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(()=>{window.open=url=>{window.openedWhatsapp=url;window.openCount=(window.openCount||0)+1;return null;};});
- const decode=async()=>{
-  const png=await page.locator('.whatsapp-qr').screenshot();
-  const pixels=await page.evaluate(async base64=>{
-   const img=new Image();img.src='data:image/png;base64,'+base64;await img.decode();
-   const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
-   const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);
-   return {data:Array.from(ctx.getImageData(0,0,canvas.width,canvas.height).data),width:canvas.width,height:canvas.height};
-  },png.toString('base64'));
-  return jsQR(new Uint8ClampedArray(pixels.data),pixels.width,pixels.height)?.data;
- };
  for(const lang of ['ar','en']){
   for(const width of [320,390,768,1440]){
    await page.setViewportSize({width,height:1000});
@@ -29,20 +18,22 @@ try {
     assert.equal(await page.locator('#app').innerText().then(text=>text.includes('01212213033')),false);
     assert.equal(await page.locator('.whatsapp-float').getAttribute('href'),target);
     assert.equal(await page.locator('.footer-whatsapp').getAttribute('href'),target);
-    assert.equal(await page.locator('.whatsapp-qr').getAttribute('href'),target);
-    assert.equal(await decode(),target,'QR must decode from real screenshot '+lang+' '+width+' '+route);
+    assert.equal(await page.locator('.whatsapp-chat-link').getAttribute('href'),target);
+    assert.equal(await page.locator('.whatsapp-qr,script[src*="qrcode"]').count(),0);
+    assert.equal(await page.evaluate(()=>typeof window.qrcode),'undefined');
+    assert.doesNotMatch(await page.locator('.whatsapp-card').innerText(),/scan|camera|امسح|كاميرا/i);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'overflow '+lang+' '+width+' '+route);
     assert.deepEqual(await page.evaluate(()=>[...window.I18N.missing]),[]);
     if(route==='/contact'&&[390,1440].includes(width))await page.screenshot({path:'.qa/whatsapp-'+lang+'-'+width+'.png',fullPage:true});
    }
   }
  }
- checks.push('16 Arabic/English mobile, tablet and desktop views: QR screenshots decode to the real WhatsApp number; links match and no horizontal scrolling');
+ checks.push('16 Arabic/English mobile, tablet and desktop views: no contact QR code or scan instructions; direct WhatsApp links match and no horizontal scrolling');
  await page.goto(base+'/?lang=en#/contact?service=menu');
- await page.locator('.whatsapp-qr').focus();
+ await page.locator('.whatsapp-chat-link').focus();
  await page.waitForFunction(()=>document.querySelector('.whatsapp-float').hidden);
  assert.equal(await page.locator('.whatsapp-float').isVisible(),false,'Contact card replaces floating shortcut near form');
- assert.equal(await page.locator('.whatsapp-qr').evaluate(a=>a===document.activeElement),true);
+ assert.equal(await page.locator('.whatsapp-chat-link').evaluate(a=>a===document.activeElement),true);
  await page.locator('.form-submit').click();
  assert.equal(await page.evaluate(()=>window.openCount||0),0);
  await page.locator('#name').fill('QA client');await page.locator('#phone').fill('01012345678');await page.locator('#activity').selectOption('restaurant');await page.locator('#message').fill('A menu & website');
@@ -54,10 +45,10 @@ try {
  await page.locator('.language-switch').click();
  assert.equal(await page.evaluate(()=>window.openCount),1);
  assert.equal(await page.locator('#name').inputValue(),'QA client');
- assert.equal(await decode(),target);
- checks.push('Keyboard-accessible QR; required fields block submission; correct encoded form destination; language switch keeps data without reopening WhatsApp');
+ assert.equal(await page.locator('.whatsapp-chat-link').getAttribute('href'),target);
+ checks.push('Keyboard-accessible WhatsApp button; required fields block submission; correct encoded form destination; language switch keeps data without reopening WhatsApp');
  await page.evaluate(()=>{window.SITE_CONFIG.company.whatsapp='201012345678';window.dispatchEvent(new HashChangeEvent('hashchange'));});
- assert.equal(await decode(),'https://wa.me/201012345678');
+ assert.equal(await page.locator('.whatsapp-chat-link').getAttribute('href'),'https://wa.me/201012345678');
  for(const number of ['', 'invalid']){
   await page.evaluate(number=>{window.SITE_CONFIG.company.whatsapp=number;window.dispatchEvent(new HashChangeEvent('hashchange'));},number);
   assert.equal(await page.locator('a[href*="wa.me"],.whatsapp-card,.whatsapp-float').count(),0);
@@ -66,7 +57,7 @@ try {
  await page.locator('.form-submit').click();
  assert.match(await page.locator('#request-result').textContent(),/لم يُرسل/);
  assert.equal(await page.evaluate(()=>window.openCount),1);
- checks.push('Changing the single configured number regenerates QR; empty/invalid settings hide all links and preserve truthful draft-only form');
+ checks.push('Changing the configured number updates the contact link; empty/invalid settings hide all links and preserve truthful draft-only form');
  assert.deepEqual(errors,[]);
  await writeFile('.qa/whatsapp-report.json',JSON.stringify({status:'passed',checks,errors},null,2));
  console.log(JSON.stringify({status:'passed',checks,errors},null,2));
